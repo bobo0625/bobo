@@ -1,0 +1,16 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    username: sinosunts
+    password: sinosun
+    url: jdbc:mysql://10.4.201.200:3306/ts_crop?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-localtions:classpath: classpath:mapper/*.xml
+  type-aliases-package: classpath:com.shubo.base.dao
+
+logging:
+  level: debug

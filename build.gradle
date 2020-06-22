@@ -1,0 +1,107 @@
+allprojects {
+    group 'com.shubo'
+    version '1.0-SNAPSHOT'
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    }
+}
+    buildscript {
+        ext {
+            springIOVersion = '1.0.0.RELEASE'
+            springBootVersion = '1.5.9.RELEASE'
+        }
+        repositories {
+            jcenter()
+            mavenLocal()
+            mavenCentral()
+            maven { url "http://repo.spring.io/release" }
+            maven { url "http://repo.spring.io/milestone" }
+            maven { url "http://repo.spring.io/snapshot" }
+            maven { url "https://plugins.gradle.org/m2/" }
+        }
+        dependencies {
+            classpath "io.spring.gradle:dependency-management-plugin:${springIOVersion}"
+            classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+
+    apply plugin: 'idea'
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    jar {
+        baseName = 'gradle-shubo'
+        version = '0.0.1'
+        manifest {
+            attributes "Manifest-Version": 1.0,
+                    'Main-Class': 'com.SpringBootDemoApplication'
+        }
+    }
+
+    repositories {
+        jcenter()
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom 'io.spring.platform:platform-bom:Brussels-SR6'
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Brixton.SR4'
+        }
+    }
+
+    ext {
+        junitVersion = '4.12'
+        slf4j_version = '1.7.25'
+        log4j2_version = '2.11.1'
+        logback_version = '1.2.3'
+    }
+    configurations{
+       // all*.exclude group: 'commons-logging', module: 'commons-logging' // common-logging
+//        all*.exclude group: 'log4j', module: 'log4j' // log4j
+//        all*.exclude group: 'org.apache.logging.log4j', module: 'log4j-core' // slf4j -> log4j2
+//        all*.exclude group: 'org.apache.logging.log4j', module: 'log4j-slf4j-impl' // log4j2
+        all*.exclude group: 'org.slf4j', module: 'slf4j-jdk14' // slf4j -> jdk-logging
+        all*.exclude group: 'org.slf4j', module: 'slf4j-jcl' // slf4j -> common-logging
+        all*.exclude group: 'org.slf4j', module: 'slf4j-log4j12' // slf4j -> log4j
+    }
+    dependencies {
+      //  compile 'org.springframework:spring-core'
+        compile 'org.springframework.boot:spring-boot-starter-web'
+        compile 'org.springframework.boot:spring-boot-autoconfigure'
+       // compile 'org.springframework.boot:spring-boot-starter-tomcat'
+        compile 'org.springframework.boot:spring-boot-starter-data-redis'
+        compile group: 'org.redisson', name: 'redisson', version: '2.2.13'
+        compile 'org.springframework.boot:spring-boot-starter-aop'
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
+        testCompile "junit:junit:${junitVersion}"
+        compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
+        compile group: 'org.apache.poi', name: 'poi', version: '4.0.1'
+        compile group: 'org.apache.commons', name: 'commons-compress', version: '1.18'
+        compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.5'
+        compile group: 'org.apache.xmlbeans', name: 'xmlbeans', version: '3.0.2'
+        compile group: 'org.apache.kafka', name: 'kafka_2.11', version: '1.0.1'
+        compile group: 'org.apache.kafka', name: 'kafka-clients', version: '1.0.1'
+        // fastjson1.2.69以下存在远程代码执行高危漏洞
+        compile "com.alibaba:fastjson:1.2.70"
+
+        compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '1.3.5'
+        compile group: 'mysql', name: 'mysql-connector-java'
+        //引入日志系统
+        compile "org.slf4j:slf4j-api:$slf4j_version"
+        compile "org.slf4j:jul-to-slf4j:$slf4j_version"
+        compile "org.slf4j:jcl-over-slf4j:$slf4j_version"
+        compile "org.slf4j:log4j-over-slf4j:$slf4j_version"
+
+
+    }
+

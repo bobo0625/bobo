@@ -1,2 +1,2 @@
-# bobo
-1，记录一些个人遇到的问题经验
+# personnalLearn
+个人学习代码
