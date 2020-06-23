@@ -2,7 +2,7 @@ package com.shubo.bis.action;
 
 import com.shubo.bis.constants.ErrorCode;
 import com.shubo.bis.service.UerManageService;
-import com.shubo.bis.util.chche.BaseLog;
+import com.shubo.bis.util.cache.BaseLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;

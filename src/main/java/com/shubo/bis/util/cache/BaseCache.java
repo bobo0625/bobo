@@ -1,4 +1,4 @@
-package com.shubo.bis.util.chche;
+package com.shubo.bis.util.cache;
 
 import com.shubo.bis.util.exception.SystemException;
 import org.springframework.util.StringUtils;

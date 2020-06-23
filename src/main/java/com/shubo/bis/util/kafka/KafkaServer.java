@@ -1,7 +1,7 @@
 package com.shubo.bis.util.kafka;
 
 import com.alibaba.fastjson.JSONObject;
-import com.shubo.bis.util.chche.BaseLog;
+import com.shubo.bis.util.cache.BaseLog;
 import com.shubo.bis.util.exception.SystemException;
 import kafka.producer.KeyedMessage;
 import org.apache.commons.collections4.CollectionUtils;

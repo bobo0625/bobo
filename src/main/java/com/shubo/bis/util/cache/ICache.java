@@ -1,4 +1,4 @@
-package com.shubo.bis.util.chche;
+package com.shubo.bis.util.cache;
 
 /**
  * @author ruanshubo

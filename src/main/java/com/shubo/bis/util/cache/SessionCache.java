@@ -1,4 +1,4 @@
-package com.shubo.bis.util.chche;
+package com.shubo.bis.util.cache;
 
 import com.shubo.bis.util.ObjectUtils;
 import org.apache.commons.lang3.ArrayUtils;

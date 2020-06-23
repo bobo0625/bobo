@@ -1,6 +1,6 @@
 package com.shubo.bis.util.kafka;
 
-import com.shubo.bis.util.chche.BaseLog;
+import com.shubo.bis.util.cache.BaseLog;
 import com.shubo.bis.util.exception.SystemException;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;

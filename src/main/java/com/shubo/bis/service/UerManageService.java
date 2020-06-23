@@ -5,6 +5,7 @@ import com.shubo.base.dao.UserInfo;
 import com.shubo.base.mapper.UserManageMapper;
 import com.shubo.bis.constants.KafKaTopics;
 import com.shubo.bis.util.ThreadPoolManager;
+import com.shubo.bis.util.cache.BaseLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class UerManageService {
             JSONObject jsonParam=new JSONObject();
 
         }catch (Exception e){
-            //BaseLog.getDailyLog().info("");
+            BaseLog.getDailyLog().info("");
         }
         return info;
     }
@@ -49,13 +50,13 @@ public class UerManageService {
         try {
             new SendTask(KafKaTopics.TPOIC_TEST, getData.toJSONString()).taskProducer();
         } catch (Exception e) {
-           // BaseLog.getErrorLog().info("testKafka消息发送失败,请求参数为：{}",getData);
+            BaseLog.getErrorLog().info("testKafka消息发送失败,请求参数为：{}",getData);
         }
         //消费消息
         try {
             new KafkaHandler(KafKaTopics.GROUP_ID,3,KafKaTopics.TPOIC_TEST);
         } catch (Exception e) {
-           // BaseLog.getErrorLog().info("消费消息主题为：testKafka失败");
+            BaseLog.getErrorLog().info("消费消息主题为：testKafka失败");
         }
     }
 }
